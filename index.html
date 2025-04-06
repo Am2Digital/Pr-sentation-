@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Carte NFC Digitale</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    .animate-tilt {
+      animation: tilt 2s infinite;
+    }
+    @keyframes tilt {
+      0%, 100% { transform: rotate(0deg); }
+      25% { transform: rotate(3deg); }
+      75% { transform: rotate(-3deg); }
+    }
+  </style>
+</head>
+<body class="font-sans bg-white text-gray-900">
+
+  <!-- Hero -->
+  <section class="text-center py-20 bg-black from-indigo-600 to-purple-600 text-white">
+    <h1 class="text-5xl font-bold mb-4">La carte de visite du futur</h1>
+    <p class="text-xl mb-6">NFC + QR + IA intégrée. Un simple geste, et tout est partagé.</p>
+    <button class="bg-white text-indigo-600 px-6 py-3 rounded-2xl shadow-lg text-lg">Découvrir la démo</button>
+  </section>
+  <!DOCTYPE html>
+  <html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Carte NFC Digitale</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+      .animate-tilt {
+        animation: tilt 2s infinite;
+      }
+      @keyframes tilt {
+        0%, 100% { transform: rotate(0deg); }
+        25% { transform: rotate(3deg); }
+        75% { transform: rotate(-3deg); }
+      }
+      .nfc-card {
+        perspective: 1000px;
+      }
+      .nfc-inner {
+        transition: transform 0.8s;
+        transform-style: preserve-3d;
+      }
+      .nfc-card:hover .nfc-inner {
+        transform: rotateY(180deg);
+      }
+      .nfc-front, .nfc-back {
+        backface-visibility: hidden;
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        border-radius: 1rem;
+      }
+      .nfc-back {
+        transform: rotateY(180deg);
+      }
+    </style>
+  </head>
+  <!-- <body class="font-sans bg-white text-gray-900"> -->
+  
+
+  
+   <style>
+
+.profile .img1{
+    margin: auto;
+    }
+    .card-container {
+      perspective: 1000px;
+    }
+   
+    .card {
+       width: 300px; 
+       height: 80px; 
+      position: relative;
+      transform-style: preserve-3d;
+      transition: transform 0.8s;
+      cursor: pointer;
+    }
+    .card:hover {
+      transform: rotateY(180deg);
+    }
+    .card-face {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      border-radius: 1rem;
+      backface-visibility: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      padding: 79px;
+      color: white;
+    }
+
+    .new {
+     
+     
+      /* background: #f0f2f5; */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 65vh;
+      font-family: 'Arial', sans-serif;
+      position: relative;
+  
+
+    }
+
+    .container {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .iphone {
+      width: 300px;
+      height: 600px;
+      border: 16px solid #000;
+      border-radius: 36px;
+      position: relative;
+      background: #fff;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+      overflow: hidden;
+      z-index: 2;
+    }
+
+    .notch {
+      width: 60%;
+      height: 30px;
+      background: #000;
+      border-radius: 0 0 20px 20px;
+      position: absolute;
+      top: 0;
+      left: 20%;
+    }
+
+    .screen {
+      padding: 60px 20px 20px;
+      height: 100%;
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+
+    .nfc-scan {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      background: #d7dad7;
+      opacity: 0.6;
+      animation: pulse 1.5s infinite;
+    }
+
+    @keyframes pulse {
+      0% {
+        transform: scale(0.9);
+        opacity: 0.7;
+      }
+      70% {
+        transform: scale(1.2);
+        opacity: 0.1;
+      }
+      100% {
+        transform: scale(0.9);
+        opacity: 0.7;
+      }
+    }
+
+    .message {
+      margin-top: 20px;
+      font-size: 18px;
+      text-align: center;
+      color: #333;
+    }
+
+    .profile {
+      display: none;
+      margin-top: 20px;
+      text-align: center;
+      position: relative;
+      width: 100%;
+    }
+
+    .profile img {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      margin-bottom: 10px;
+    }
+
+    .profile h3 {
+      margin: 0;
+      font-size: 20px;
+    }
+
+    .profile p {
+      margin: 5px 0;
+      color: #666;
+    }
+
+    .chatbot-container {
+      display: none;
+      margin-top: 12px;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      justify-content: center;
+    }
+
+    .chatbot-logo {
+      width: 24px;
+      height: 24px;
+      z-index: 5;
+    }
+
+    .chatbot-bubble {
+      background: #4caf50;
+      color: white;
+      padding: 6px 10px;
+      border-radius: 14px;
+      font-size: 10px;
+      animation: fadeIn 1s ease-in-out;
+      white-space: nowrap;
+    }
+
+    .stars {
+      margin-top: 10px;
+      animation: fadeIn 1s ease-in-out;
+    }
+
+    .star {
+      color: gold;
+      font-size: 20px;
+      animation: pulseStar 1.5s infinite alternate;
+    }
+
+    @keyframes pulseStar {
+      from { transform: scale(1); opacity: 0.7; }
+      to { transform: scale(1.3); opacity: 1; }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    .button {
+      display: none;
+      margin-top: 15px;
+      padding: 10px 20px;
+      background: #8de924;
+      color: black;
+      border: none;
+      border-radius: 20px;
+      cursor: pointer;
+    }
+
+    .button:hover {
+      background: #43a047;
+    }
+
+    .card-nfc {
+      width: 220px;
+      height: 140px;
+      background: linear-gradient(135deg, #fad502, #f38b03);
+      color: white;
+      border-radius: 16px;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      cursor: pointer;
+      z-index: 3;
+      position: absolute;
+      top: -100px;
+      transition: transform 1s ease-in-out, opacity 0.5s ease-out;
+    }
+
+    .card-nfc.move {
+      transform: translateY(140px);
+    }
+
+    .card-nfc.hide {
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .card-nfc h4 {
+      margin: 0;
+      font-size: 18px;
+    }
+
+    .card-nfc p {
+      margin: 0;
+      font-size: 14px;
+    }
+
+    .beam {
+      position: absolute;
+      top: 0;
+      left: 50%;
+      width: 10px;
+      height: 0;
+      background: rgba(0, 200, 255, 0.5);
+      transform: translateX(-50%);
+      z-index: 1;
+      transition: height 0.5s ease-out;
+    }
+    .social-icons {
+      display: flex;
+      gap: 15px;
+      margin-top: 15px;
+    }
+    .social-icons a {
+      font-size: 1.4em;
+      transition: transform 0.3s ease;
+    }
+    .social-icons a:hover {
+      transform: scale(1.3);
+    }
+    .social-icons a .fa-linkedin { color: #0e76a8; }
+    .social-icons a .fa-facebook { color: #3b5998; }
+    .social-icons a .fa-twitter, .fa-x-twitter { color: #1da1f2; }
+    .social-icons a .fa-instagram { color: #e1306c; }
+    .social-icons a .fa-github { color: #333; }
+    .social-icons a .fa-linkedin { color: #0e76a8; }
+    .social-icons a .fa-facebook { color: #3b5998; }
+    .social-icons a .fa-twitter, .fa-x-twitter { color: #1da1f2; }
+    .social-icons a .fa-instagram { color: #e1306c; }
+    .social-icons a .fa-github { color: #333; }
+    .controls {
+      position: absolute;
+      bottom: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 10px;
+    }
+    .controls button {
+     
+      color: rgb(10, 10, 10);
+      border: none;
+      padding: 2px 0px;
+      border-radius: 3px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+    .stars {
+    margin: 10px 0;
+    animation: pulse 1.5s infinite;
+  }
+  .stars i {
+    color: gold;
+    margin: 0 2px;
+    font-size: 1.1em;
+  }
+  @keyframes pulse {
+    0% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.1); opacity: 0.8; }
+    100% { transform: scale(1); opacity: 1; }
+  }
+
+  .typewriter {
+  animation: anime 4s steps(40) 1s 1 normal both,
+  anime2 500ms steps(40) infinite normal;
+  }
+    .nfc-back {
+      transform: rotateY(180deg);
+    }
+    .card-front.black { background: linear-gradient(135deg, #111827, #000000); }
+    .card-back.black { background: linear-gradient(135deg, #111827, #000000); transform: rotateY(180deg); }
+
+    .card-front.silver { background: linear-gradient(135deg, #d1d5db, #9ca3af); color: #1f2937; }
+    .card-back.silver { background: linear-gradient(135deg, #d1d5db, #9ca3af); color: #1f2937; transform: rotateY(180deg); }
+
+    .card-front.gold { background: linear-gradient(135deg, #fad502, #f38b03); }
+    .card-back.gold { background: linear-gradient(135deg, #fad502, #f38b03); transform: rotateY(180deg); }
+  
+  </style>
+</head>
+<body class="bg-gray-100 text-gray-900 font-sans">
+
+  <section class="py-16 px-4 text-center">
+    <h1 class="text-4xl font-bold mb-8">Les cartes de visite digital</h1>
+    <p class="text-2xl font-bold mb-5">Les cartes Classic,Metal ou Gold, son des produit personnalisable en impression ou en gravure .</p>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+
+  <!-- Carte Noire -->
+<div class="card-container group" onclick="simulateNFC('https://am2tech.fr')">
+  <div class="card transform transition-transform duration-500 group-hover:scale-105">
+    <div class="card-face card-front black">
+      <h2 class="text-xl font-bold">Logo</h2>
+      <p class="text-sm">Carte Classic</p>
+    </div>
+    <div class="card-face card-back black">
+      <p>Email : contact@am2tech.fr</p>
+      <p>Tél : 07 56 89 45 32</p>
+      <a href="https://am2digital.github.io/carteProfile/" target="_blank" class="underline text-sm">Visiter le site</a>
+    </div>
+  </div>
+</div>
+
+<!-- Carte Argentée -->
+<div class="card-container group" onclick="simulateNFC('https://am2tech.fr/argent')">
+  <div class="card transform transition-transform duration-500 group-hover:scale-105">
+    <div class="card-face card-front silver">
+      <h2 class="text-xl font-bold">Logo</h2>
+      <p class="text-sm">Carte Metal</p>
+    </div>
+    <div class="card-face card-back silver">
+      <p>Email : argent@am2tech.fr</p>
+      <p>Tél : 07 56 89 45 33</p>
+      <a href="https://am2tech.fr/argent" target="_blank" class="underline text-sm">Visiter le site</a>
+    </div>
+  </div>
+</div>
+
+       <!-- Carte Dorée -->
+       <div class="card-container" onclick="simulateNFC('https://am2tech.fr/gold')">
+        <div class="card">
+          <div class="card-face card-front gold">
+            <h2 class="text-xl font-bold">Logo</h2>
+            <p class="text-sm">Carte  Gold</p>
+          </div>
+          <div class="card-face card-back gold">
+            <p>Email : gold@am2tech.fr</p>
+            <p>Tél : 07 56 89 45 34</p>
+            <a href="https://am2tech.fr/gold" target="_blank" class="underline text-sm">Visiter le site</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <script>
+    function simulateNFC(url) {
+  const notification = document.createElement("div");
+  notification.innerText = "📡 Lecture de la carte NFC en cours...";
+  notification.className = "fixed bottom-5 left-1/2 transform -translate-x-1/2 bg-indigo-600 text-white px-6 py-3 rounded-full shadow-lg z-50 animate-bounce";
+
+  document.body.appendChild(notification);
+  setTimeout(() => {
+    window.open(url, "_blank");
+    notification.remove();
+  }, 1200);
+}
+  </script>
+  
+    <!-- Sections suivantes inchangées... -->
+    <!-- (Pour qui, Fonctionnalités, Tarifs, Formulaire, Footer, Script) -->
+    <!-- ... -->
+  
+  </body>
+  </html>
+  <!-- Maquette image 3D -->
+  <!-- <section class="py-20 px-6 bg-white text-center">
+    <h2 class="text-3xl font-bold mb-6">Maquette 3D de la carte NFC</h2>
+    <p class="mb-8 text-gray-600">Visualisez une carte noire élégante avec technologie NFC intégrée.</p>
+    <div class="max-w-xl mx-auto">
+      <img src="https://cdn.midjourney.com/2c580e7b-dbb7-4d3c-88a8-cdcb931ad350/0_3.png" alt="Carte NFC 3D noire" class="rounded-xl shadow-xl w-full hover:scale-105 transition-transform cursor-pointer" onclick="simulateCardClick()" />
+    </div>
+    <div id="cardResult" class="mt-6 hidden text-lg text-gray-700"></div>
+  </section> -->
+
+  <!-- Pour qui -->
+  <br>
+<br>
+
+  <section class="py-16 px-6 max-w-6xl mx-auto">
+
+    <h2 class="text-3xl font-bold mb-6 text-center">Adaptée à tous les métiers</h2>
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+    <a href="sante.html"><div class="bg-gray-100 rounded-xl p-4 shadow-sm">Santé</div></a>
+   
+    <a href="immo.html"><div class="bg-gray-100 rounded-xl p-4 shadow-sm">Immobilier</div></a>
+      <div class="bg-gray-100 rounded-xl p-4 shadow-sm">Coiffure & beauté</div>
+      <div class="bg-gray-100 rounded-xl p-4 shadow-sm">Coaching</div>
+      <div class="bg-gray-100 rounded-xl p-4 shadow-sm">Artisans</div>
+      <div class="bg-gray-100 rounded-xl p-4 shadow-sm">Indépendants</div>
+    </div>
+  </section>
+
+  <div class="new">
+
+    <div class="container">
+      <div class="card-nfc" id="card">
+        <h4>Carte Santé+</h4>
+        <p>Dr. Alex Dupont</p>
+        <!-- <p>Scan pour ajouter</p> -->
+      </div>
+    
+      <div class="iphone">
+        <div class="notch"></div>
+        <div class="screen">
+          <div class="nfc-scan" id="scanner"></div>
+          <div class="message" id="message">Scan en cours...</div>
+    
+          <div class="profile" id="profile">
+            <img class="img1"  src="https://randomuser.me/api/portraits/men/32.jpg" alt="Contact">
+            <h3>Dr. Alex Dupont</h3>
+            <p>Dentiste</p>
+            <p>📞 06 12 34 56 78</p>
+            <p>Résevez-un Rdv</p>
+            <div class="stars">
+              <span class="star">★</span>
+              <span class="star">★</span>
+              <span class="star">★</span>
+              <span class="star">★</span>
+              <span class="star">★</span>
+            </div>
+            <button class="button" id="addBtn">Ajouter au contacts</button>
+            <div class="chatbot-container" id="chatbot">
+              <div class="chatbot-bubble">Bonjour, je suis Assistante Santé+</div>
+              <img src="https://cdn-icons-png.flaticon.com/512/4712/4712109.png" alt="Assistante Santé+" class="chatbot-logo">
+            </div>
+          </div>
+        </div>
+      </div>
+    
+      <div class="beam" id="beam"></div>
+    </div>
+    
+    <script>
+      function simulateScan() {
+        const beam = document.getElementById('beam');
+        const card = document.getElementById('card');
+        const scanner = document.getElementById('scanner');
+        const message = document.getElementById('message');
+        const profile = document.getElementById('profile');
+        const addBtn = document.getElementById('addBtn');
+        const chatbot = document.getElementById('chatbot');
+    
+        card.classList.remove('hide');
+        card.classList.remove('move');
+        void card.offsetWidth;
+    
+        card.classList.add('move');
+        beam.style.height = '100px';
+        scanner.style.display = "block";
+        message.textContent = "Scan en cours...";
+        profile.style.display = "none";
+        addBtn.style.display = "none";
+        chatbot.style.display = "none";
+    
+        setTimeout(() => {
+          beam.style.height = '0';
+          card.classList.add('hide');
+          message.textContent = "Contact détecté !";
+          scanner.style.display = "none";
+          profile.style.display = "block";
+          chatbot.style.display = "flex";
+          addBtn.style.display = "inline-block";
+        }, 2000);
+      }
+    
+      setInterval(simulateScan, 5000);
+    </script>
+    
+  </div>
+
+
+   
+
+  <!-- Fonctionnalités -->
+  <section class="bg-gray-50 py-16 px-6">
+    <h2 class="text-3xl font-bold text-center mb-10">Fonctionnalités puissantes</h2>
+    <div class="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto text-center">
+      <div class="bg-white rounded-xl shadow p-6">🤖 Chatbot IA intégré</div>
+      <div class="bg-white rounded-xl shadow p-6">📅 Prise de RDV en ligne</div>
+      <div class="bg-white rounded-xl shadow p-6">📲 Ajout automatique au téléphone</div>
+      <div class="bg-white rounded-xl shadow p-6">🌍 Traduction automatique</div>
+      <div class="bg-white rounded-xl shadow p-6">⭐ Avis Google & réseaux</div>
+      <div class="bg-white rounded-xl shadow p-6">📊 Statistiques en temps réel</div>
+    </div>
+  </section>
+
+  <!-- Tarifs -->
+  <section class="bg-gray-100 py-20 px-6">
+    <h2 class="text-3xl font-bold text-center mb-10">Formules</h2>
+    <div class="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto text-center">
+      <div class="bg-white rounded-xl shadow p-6">
+        <h3 class="text-xl font-bold mb-2">Classique</h3>
+        <p class="mb-4">Carte + Lien personnalisé</p>
+        <p class="text-2xl font-bold mb-4">29€</p>
+        <button class="bg-indigo-600 text-white px-4 py-2 rounded-xl">Commander</button>
+      </div>
+      <div class="bg-white rounded-xl shadow p-6">
+        <h3 class="text-xl font-bold mb-2">Smart</h3>
+        <p class="mb-4">+ IA, Statistiques, RDV</p>
+        <p class="text-2xl font-bold mb-4">59€</p>
+        <button class="bg-indigo-600 text-white px-4 py-2 rounded-xl">Commander</button>
+      </div>
+      <div class="bg-white rounded-xl shadow p-6">
+        <h3 class="text-xl font-bold mb-2">Pro</h3>
+        <p class="mb-4">Design sur-mesure + IA avancée</p>
+        <p class="text-2xl font-bold mb-4">Sur devis</p>
+        <button class="bg-indigo-600 text-white px-4 py-2 rounded-xl">Demander un devis</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Formulaire de contact -->
+  <section class="py-20 px-6 bg-white">
+    <h2 class="text-3xl font-bold text-center mb-8">Un projet ? Parlons-en.</h2>
+    <form class="max-w-xl mx-auto space-y-4" id="contactForm">
+      <input class="w-full p-3 border border-gray-300 rounded-xl" type="text" name="name" placeholder="Nom" required>
+      <input class="w-full p-3 border border-gray-300 rounded-xl" type="email" name="email" placeholder="Email" required>
+      <textarea class="w-full p-3 border border-gray-300 rounded-xl" rows="4" name="message" placeholder="Votre message" required></textarea>
+      <button class="bg-indigo-600 text-white px-6 py-2 rounded-xl" type="submit">Envoyer</button>
+    </form>
+  </section>
+
+  <!-- Footer -->
+  <footer class="text-center py-10 text-gray-500">
+    ©  AM2TECH — Tous droits réservés
+  </footer>
+
+  <script>
+    document.getElementById("contactForm")?.addEventListener("submit", function (e) {
+      e.preventDefault();
+      alert("Message envoyé ! Merci pour votre demande.");
+    });
+
+    function simulateCardClick() {
+      const result = document.getElementById("cardResult");
+      result.innerHTML = `📇 <strong>AM2TECH</strong><br>Email : <a href='mailto:contact@am2tech.fr' class='text-blue-600 underline'>contact@am2tech.fr</a><br>Téléphone : <a href='tel:+33756894532' class='text-blue-600 underline'>07 56 89 45 32</a><br><a href='https://am2tech.fr' class='text-blue-600 underline' target='_blank'>am2tech.fr</a>`;
+      result.classList.remove("hidden");
+    }
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Carte Immo+ - Style Moderne</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    body {
+      background: #f8f5f5;
+      font-family: 'Segoe UI', sans-serif;
+      color: #fff;
+      margin: 0;
+      padding: 2rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    form {
+      background: #1a1a1a;
+      padding: 1rem;
+      border-radius: 10px;
+      margin-bottom: 2rem;
+      max-width: 400px;
+      width: 100%;
+    }
+
+    form input {
+      width: 100%;
+      padding: 0.8rem;
+      margin: 0.5rem 0;
+      border-radius: 8px;
+      border: none;
+      font-size: 1rem;
+    }
+
+    .profile-card {
+      background: #1a1a1a;
+      border-radius: 20px;
+      padding: 2rem;
+      text-align: center;
+      max-width: 350px;
+      width: 100%;
+    }
+
+    .profile-img {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-bottom: 1.5rem;
+    }
+
+    .name {
+      font-size: 1.8rem;
+      font-weight: 600;
+      margin-bottom: 1.5rem;
+    }
+
+    .button {
+      background: #2b2b2b;
+      border: none;
+      border-radius: 12px;
+      padding: 1rem;
+      margin: 0.4rem 0;
+      width: 100%;
+      color: #fff;
+      font-size: 1rem;
+      text-align: left;
+      display: flex;
+      align-items: center;
+      gap: 0.7rem;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .button:hover {
+      background: #3a3a3a;
+    }
+
+    .social-icons {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin: 1rem 0;
+    }
+
+    .social-icons i {
+      font-size: 1.5rem;
+      color: #ccc;
+      transition: color 0.3s;
+    }
+
+    .social-icons i:hover {
+      color: #fff;
+    }
+
+    .actions {
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+
+    .actions button {
+      flex: 1;
+      padding: 0.9rem;
+      border: none;
+      border-radius: 12px;
+      background: #2b2b2b;
+      color: white;
+      font-size: 1rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+    }
+
+    /* Palette de couleurs dans le formulaire */
+    .color-picker {
+      display: flex;
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+
+    .color-picker input {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      cursor: pointer;
+      border: none;
+    }
+  </style>
+</head>
+<body>
+  <form id="infoForm">
+    <input type="file" id="inputPhoto" placeholder="Télécharger la photo" accept="image/*">
+    <input type="text" id="inputName" placeholder="Nom complet">
+    <input type="tel" id="inputPhone" placeholder="Téléphone">
+    <input type="email" id="inputEmail" placeholder="Email">
+   
+    <input type="url" id="inputLinkedIn" placeholder="LinkedIn URL">
+    <input type="url" id="inputInstagram" placeholder="Instagram URL">
+    <input type="url" id="inputFacebook" placeholder="Facebook URL">
+    <input type="url" id="inputSms" placeholder="Sms URL">
+    
+    <input type="url" id="inputTwitter" placeholder="Twitter URL">
+    <input type="url" id="inputYouTube" placeholder="YouTube URL">
+
+    <!-- Palette de couleurs -->
+    <div class="color-picker">
+      <input type="color" id="color1" value="#ff6f61" title="Couleur 1">
+     
+    </div>
+  </form>
+
+  <div class="profile-card">
+    <img id="photo" class="profile-img" src="https://via.placeholder.com/120" alt="Photo">
+    <div class="name" id="name">Ahmed Chaieb</div>
+
+    <button class="button" onclick="callUser()"><i class="fas fa-phone"></i> Appeler</button>
+    <button class="button" onclick="emailUser()"><i class="fas fa-envelope"></i> Email</button>
+    <button class="button" onclick="smsUser()"><i class="fab fa-sms"></i> Sms</button>
+
+    <div class="social-icons">
+      <a id="linkedinLink" href="#" target="_blank"><i class="fab fa-linkedin"></i></a>
+      <a id="instagramLink" href="#" target="_blank"><i class="fab fa-instagram"></i></a>
+      <a id="facebookLink" href="#" target="_blank"><i class="fab fa-facebook"></i></a>
+      <a id="whatsappLink" href="#" target="_blank"><i class="fab fa-sms"></i></a>
+      <a id="twitterLink" href="#" target="_blank"><i class="fab fa-twitter"></i></a>
+      <a id="youtubeLink" href="#" target="_blank"><i class="fab fa-youtube"></i></a>
+    </div>
+
+    <div class="actions">
+      <button onclick="saveContact()"><i class="fas fa-download"></i> Sauvegarder</button>
+      <button onclick="shareProfile()"><i class="fas fa-paper-plane"></i> Envoyer</button>
+    </div>
+  </div>
+
+  <script>
+    const inputName = document.getElementById('inputName');
+    const inputPhone = document.getElementById('inputPhone');
+    const inputEmail = document.getElementById('inputEmail');
+    const inputPhoto = document.getElementById('inputPhoto');
+    const inputLinkedIn = document.getElementById('inputLinkedIn');
+    const inputInstagram = document.getElementById('inputInstagram');
+    const inputFacebook = document.getElementById('inputFacebook');
+    const inputWhatsApp = document.getElementById('inputSms');
+    const inputTwitter = document.getElementById('inputTwitter');
+    const inputYouTube = document.getElementById('inputYouTube');
+    
+    const colorInputs = document.querySelectorAll('.color-picker input');
+
+    inputName.addEventListener('input', () => {
+      document.getElementById('name').textContent = inputName.value || 'Nom complet';
+    });
+
+    inputPhoto.addEventListener('change', () => {
+      const file = inputPhoto.files[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+          document.getElementById('photo').src = e.target.result;
+        };
+        reader.readAsDataURL(file);
+      }
+    });
+
+    colorInputs.forEach(input => {
+      input.addEventListener('input', (e) => {
+        document.querySelector('.profile-card').style.backgroundColor = e.target.value;
+      });
+    });
+
+    function callUser() {
+      if (inputPhone.value) window.location.href = `tel:${inputPhone.value}`;
+    }
+
+    function emailUser() {
+      if (inputEmail.value) window.location.href = `mailto:${inputEmail.value}`;
+    }
+
+    function whatsappUser() {
+      if (inputPhone.value) {
+        const tel = inputPhone.value.replace(/[^\d]/g, '');
+        window.location.href = `https://wa.me/33${tel.slice(-9)}`;
+      }
+    }
+
+    function saveContact() {
+      const vCardData = `BEGIN:VCARD\nVERSION:3.0\nN:Chaieb;${inputName.value || 'Nom'};;;\nFN:${inputName.value || 'Nom Complet'}\nTEL:${inputPhone.value || '0600000000'}\nEMAIL:${inputEmail.value || 'email@example.com'}\nEND:VCARD`;
+      const blob = new Blob([vCardData], { type: 'text/vcard' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `${inputName.value || 'contact'}.vcf`;
+      a.click();
+      URL.revokeObjectURL(url);
+    }
+
+    function shareProfile() {
+      if (navigator.share) {
+        navigator.share({
+          title: `Carte ${inputName.value || ''}`,
+          text: 'Voici mes infos professionnelles 📇',
+          url: window.location.href
+        });
+      } else {
+        alert("Le partage n'est pas supporté sur ce navigateur.");
+      }
+    }
+  </script>
+</body>
+</html>
